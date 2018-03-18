@@ -23,7 +23,7 @@ public final class Log4jConfigurator extends LoggerConfigurator {
 	}
 
 	@Override
-	public void configureLogger(final String config) {
+	protected void configureLogger(final String config) {
 		if (FilenameUtils.isExtension(config.toUpperCase(), CONFIG_TYP.PROPERTIES.name())) {
 			System.out.println("Property Configuration :: " + config);
 			PropertyConfigurator.configureAndWatch(config, rescanDelay);

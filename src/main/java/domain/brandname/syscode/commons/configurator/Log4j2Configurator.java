@@ -21,7 +21,7 @@ public final class Log4j2Configurator extends LoggerConfigurator {
 	}
 
 	@Override
-	public void configureLogger(final String config) {
+	protected void configureLogger(final String config) {
 		System.out.println("Configuring Logger :: " + config);
 		final LoggerContext context = Configurator.initialize("log4j2Config", config);
 		if (context.getConfiguration().getWatchManager().getIntervalSeconds() <= 0) {

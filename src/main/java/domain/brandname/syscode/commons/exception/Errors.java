@@ -2,7 +2,7 @@ package domain.brandname.syscode.commons.exception;
 
 import org.apache.commons.lang.StringUtils;
 
-import domain.brandname.syscode.commons.utilities.CommonUtility;
+import domain.brandname.syscode.commons.utilities.EnumUtility;
 import domain.brandname.syscode.commons.utilities.PropertyReader;
 
 public enum Errors {
@@ -17,7 +17,7 @@ public enum Errors {
 	}
 
 	public static Errors enumFor(String errCode) {
-		return CommonUtility.getEnum(Errors.class, errCode);
+		return EnumUtility.getEnum(Errors.class, errCode);
 	}
 
 	public String getErrorCode() {

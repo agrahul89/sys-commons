@@ -1,10 +1,12 @@
 package domain.brandname.syscode.commons.configurator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.ArrayUtils;
 
 public abstract class LoggerConfigurator implements Configurator {
 
@@ -35,11 +37,9 @@ public abstract class LoggerConfigurator implements Configurator {
 	}
 
 	String[] getSupportedConfigurationNames() {
-		String[] output = new String[] {};
-		for (CONFIG_TYP config : supportedConfigurations) {
-			output = ArrayUtils.add(output, config.name());
-		}
-		return output;
+		List<String> output = new ArrayList<>(supportedConfigurations.length);
+		Arrays.stream(supportedConfigurations).forEach(config -> output.add(config.name()));
+		return output.toArray(new String[output.size()]);
 	}
 
 	protected abstract void configureLogger(final String config);
