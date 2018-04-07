@@ -23,7 +23,7 @@ public final class PropertyFileConfigurator implements Configurator {
 	}
 
 	public PropertyFileConfigurator(final String filePath) {
-		this(filePath, 180000);
+		this(filePath, DEFAULT_RELOAD_MS);
 	}
 
 	public PropertyFileConfigurator(final String filePath, long refreshDelay) {

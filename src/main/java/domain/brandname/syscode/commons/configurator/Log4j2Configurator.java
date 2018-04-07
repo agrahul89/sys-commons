@@ -12,7 +12,7 @@ public final class Log4j2Configurator extends LoggerConfigurator {
 	}
 
 	public Log4j2Configurator(String logConfigPath) {
-		this(logConfigPath, 180000);
+		this(logConfigPath, DEFAULT_RELOAD_MS);
 	}
 
 	public Log4j2Configurator(String logConfigPath, long rescanDelay) {
