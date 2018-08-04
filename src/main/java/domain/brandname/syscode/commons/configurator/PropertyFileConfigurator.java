@@ -9,12 +9,14 @@ import org.apache.commons.configuration.EnvironmentConfiguration;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import domain.brandname.syscode.commons.exception.InitializationException;
 import domain.brandname.syscode.commons.utilities.PropertyReader;
 
 public final class PropertyFileConfigurator implements Configurator {
-	private static final Logger LOGGER = Logger.getLogger(PropertyFileConfigurator.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(PropertyFileConfigurator.class);
 	private final String filePath;
 	private final long refreshDelay;
 
@@ -45,20 +47,25 @@ public final class PropertyFileConfigurator implements Configurator {
 
 	private AbstractConfiguration getPropertyConfiguration() {
 		LOGGER.info("Initializing Property File Configuration");
-		LOGGER.info("Property File Path :: " + filePath);
-		File configPropFile = FileUtils.getFile(filePath);
+		LOGGER.info("Property File Path :: {}", this.filePath);
+		File configPropFile = FileUtils.getFile(this.filePath);
 		PropertiesConfiguration propertiesConfiguration = null;
 		try {
 			propertiesConfiguration = new PropertiesConfiguration(configPropFile);
 			propertiesConfiguration.setAutoSave(true);
-			FileChangedReloadingStrategy fileUpdateStrategy = new FileChangedReloadingStrategy();
-			fileUpdateStrategy.setRefreshDelay(refreshDelay);
-			propertiesConfiguration.setReloadingStrategy(fileUpdateStrategy);
+			propertiesConfiguration.setReloadingStrategy(getReloadStrategy());
 			LOGGER.info("Property File Configuration was Successful");
 		} catch (final ConfigurationException ex) {
 			LOGGER.error("Failed to configure Properties File", ex);
+			throw new InitializationException("Property File Configuration failed", ex);
 		}
 		return propertiesConfiguration;
+	}
+
+	private FileChangedReloadingStrategy getReloadStrategy() {
+		FileChangedReloadingStrategy fileUpdateStrategy = new FileChangedReloadingStrategy();
+		fileUpdateStrategy.setRefreshDelay(this.refreshDelay);
+		return fileUpdateStrategy;
 	}
 
 }

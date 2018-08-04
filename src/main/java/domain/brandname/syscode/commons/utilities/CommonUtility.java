@@ -1,5 +1,6 @@
 package domain.brandname.syscode.commons.utilities;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -12,21 +13,21 @@ public final class CommonUtility {
 		super();
 	}
 
-	@SuppressWarnings("unchecked")
-	public static <T> Collection<T> remove(Collection<T> collection, T... itemsToRemove) {
-		Collection<T> output = collection == null ? null : collection;
+	@SafeVarargs
+	public static <T extends Object> Collection<T> remove(Collection<T> collection, T... itemsToRemove) {
+		Collection<T> output = null;
 		if (itemsToRemove == null) {
-			output = removeNull(output);
+			output = removeNull(collection);
 		} else {
-			for (T itemToRemove : itemsToRemove) {
-				output = remove(output, itemToRemove);
-			}
+			output = remove(collection, Arrays.asList(itemsToRemove));
 		}
 		return output;
 	}
 
 	public static Collection<String> removeBlank(Collection<String> collection) {
-		return removeEmpty(removeNull(collection));
+		Collection<String> output = removeNull(collection);
+		output = removeEmpty(collection);
+		return output;
 	}
 
 	public static Collection<String> removeEmpty(Collection<String> collection) {
@@ -37,6 +38,14 @@ public final class CommonUtility {
 	public static <T> Collection<T> removeNull(Collection<T> collection) {
 		Collection<String> remove = Collections.singleton(null);
 		return collection == null ? null : CollectionUtils.removeAll(collection, remove);
+	}
+
+	private static <T extends Object> Collection<T> remove(Collection<T> collection, Iterable<T> itemsToRemove) {
+		Collection<T> output = null;
+		for (T itemToRemove : itemsToRemove) {
+			output = remove(collection, itemToRemove);
+		}
+		return output;
 	}
 
 	private static <T> Collection<T> remove(Collection<T> collection, T itemToRemove) {

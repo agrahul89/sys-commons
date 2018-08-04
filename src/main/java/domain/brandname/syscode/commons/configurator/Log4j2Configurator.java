@@ -25,8 +25,8 @@ public final class Log4j2Configurator extends LoggerConfigurator {
 		System.out.println("Configuring Logger :: " + config);
 		final LoggerContext context = Configurator.initialize("log4j2Config", config);
 		if (context.getConfiguration().getWatchManager().getIntervalSeconds() <= 0) {
-			System.out.println("Setup Monitoring interval to " + rescanDelay + "ms");
-			int rescanDelayInSeconds = Long.valueOf(rescanDelay / 1000).intValue();
+			System.out.println("Setup Monitoring interval to " + this.rescanDelay + "ms");
+			int rescanDelayInSeconds = Long.valueOf(this.rescanDelay / 1000).intValue();
 			context.getConfiguration().getWatchManager().setIntervalSeconds(rescanDelayInSeconds);
 		}
 	}

@@ -8,6 +8,8 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
+import domain.brandname.syscode.commons.exception.InitializationException;
+
 public abstract class LoggerConfigurator implements Configurator {
 
 	private String logConfigPath;
@@ -27,13 +29,15 @@ public abstract class LoggerConfigurator implements Configurator {
 			System.out.println("No Logger Configuration file was provided");
 			System.out.println("Provide absolute path to Logger Configuration file in Constructor(logConfigPath)");
 			System.out.println("Supported Configuration file types are :: " + Arrays.toString(supportedConfigs));
+			throw new InitializationException("Logger Configuration failed");
 		} else if (!FilenameUtils.isExtension(logConfigPath.toUpperCase(), supportedConfigs)) {
-			System.out.println("Unsupported Configuration File. Supported Configuration file types are :: "
-					+ Arrays.toString(supportedConfigs));
+			System.out.println(
+					"Unsupported Configuration File. Supported types are :: " + Arrays.toString(supportedConfigs));
+			throw new InitializationException("Logger Configuration failed");
 		} else {
-			configureLogger(logConfigPath);
+			configureLogger(this.logConfigPath);
+			System.out.println("Logger Configuration Completed");
 		}
-		System.out.println("Logger Configuration Completed");
 	}
 
 	String[] getSupportedConfigurationNames() {

@@ -1,6 +1,6 @@
 package domain.brandname.syscode.commons.exception;
 
-public class SysException extends Exception {
+public class SysException extends RuntimeException {
 
 	private static final long serialVersionUID = 2627995124156334806L;
 	private Errors error = Errors.NA;

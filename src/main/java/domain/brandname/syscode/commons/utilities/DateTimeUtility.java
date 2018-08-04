@@ -20,12 +20,34 @@ public final class DateTimeUtility {
 		super();
 	}
 
+	public static Calendar asCalendar(final int dayOfMonth) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+		return truncToDays(calendar);
+	}
+
+	public static Date asDate(final int dayOfMonth) {
+		return asCalendar(dayOfMonth).getTime();
+	}
+
+	public static long asLong(final int dayOfMonth) {
+		return asDate(dayOfMonth).getTime();
+	}
+
+	public static java.sql.Date asSqlDate(final int dayOfMonth) {
+		return new java.sql.Date(asLong(dayOfMonth));
+	}
+
+	public static Timestamp asTimestamp(final int dayOfMonth) {
+		return new Timestamp(asLong(dayOfMonth));
+	}
+
 	public static long firstDayOfMonth() {
 		return firstDayOfMonthAsDate().getTime();
 	}
 
 	public static Calendar firstDayOfMonthAsCalendar() {
-		return truncateToMonths(Calendar.getInstance());
+		return truncToMonths(Calendar.getInstance());
 	}
 
 	public static Date firstDayOfMonthAsDate() {
@@ -49,7 +71,6 @@ public final class DateTimeUtility {
 	}
 
 	public static final String format(long millis, final String format, TimeZone timezone) {
-
 		return DateFormatUtils.format(millis, format, timezone);
 	}
 
@@ -85,7 +106,7 @@ public final class DateTimeUtility {
 		Calendar calendar = Calendar.getInstance();
 		int lastDayOfMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 		calendar.set(Calendar.DAY_OF_MONTH, lastDayOfMonth);
-		return truncateToDays(calendar);
+		return truncToDays(calendar);
 	}
 
 	public static Date lastDayOfMonthAsDate() {
@@ -98,28 +119,6 @@ public final class DateTimeUtility {
 
 	public static Timestamp lastDayOfMonthAsTimestamp() {
 		return new Timestamp(lastDayOfMonth());
-	}
-
-	public static long nthDayOfMonth(final int dayOfMonth) {
-		return nthDayOfMonthAsDate(dayOfMonth).getTime();
-	}
-
-	public static Calendar nthDayOfMonthAsCalendar(final int dayOfMonth) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-		return truncateToDays(calendar);
-	}
-
-	public static Date nthDayOfMonthAsDate(final int dayOfMonth) {
-		return nthDayOfMonthAsCalendar(dayOfMonth).getTime();
-	}
-
-	public static java.sql.Date nthDayOfMonthAsSqlDate(final int dayOfMonth) {
-		return new java.sql.Date(nthDayOfMonth(dayOfMonth));
-	}
-
-	public static Timestamp nthDayOfMonthAsTimestamp(final int dayOfMonth) {
-		return new Timestamp(nthDayOfMonth(dayOfMonth));
 	}
 
 	public static long parse(final String value, String... format) {
@@ -153,35 +152,35 @@ public final class DateTimeUtility {
 		return date == null ? null : new Timestamp(date.getTime());
 	}
 
-	public static Calendar truncateToDays(Calendar calendar) {
+	public static Calendar truncToDays(Calendar calendar) {
 		return calendar == null ? calendar : DateUtils.truncate(calendar, Calendar.DATE);
 	}
 
-	public static Date truncateToDays(Date date) {
+	public static Date truncToDays(Date date) {
 		return date == null ? date : DateUtils.truncate(date, Calendar.DATE);
 	}
 
-	public static Calendar truncateToHours(Calendar calendar) {
+	public static Calendar truncToHours(Calendar calendar) {
 		return calendar == null ? calendar : DateUtils.truncate(calendar, Calendar.HOUR);
 	}
 
-	public static Date truncateToHours(Date date) {
+	public static Date truncToHours(Date date) {
 		return date == null ? date : DateUtils.truncate(date, Calendar.HOUR);
 	}
 
-	public static Calendar truncateToMinutes(Calendar calendar) {
+	public static Calendar truncToMins(Calendar calendar) {
 		return calendar == null ? calendar : DateUtils.truncate(calendar, Calendar.MINUTE);
 	}
 
-	public static Date truncateToMinutes(Date date) {
+	public static Date truncToMins(Date date) {
 		return date == null ? date : DateUtils.truncate(date, Calendar.MINUTE);
 	}
 
-	public static Calendar truncateToMonths(Calendar calendar) {
+	public static Calendar truncToMonths(Calendar calendar) {
 		return calendar == null ? calendar : DateUtils.truncate(calendar, Calendar.MONTH);
 	}
 
-	public static Date truncateToMonths(Date date) {
+	public static Date truncToMonths(Date date) {
 		return date == null ? date : DateUtils.truncate(date, Calendar.MONTH);
 	}
 

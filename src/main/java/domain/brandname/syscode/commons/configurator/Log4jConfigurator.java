@@ -24,16 +24,21 @@ public final class Log4jConfigurator extends LoggerConfigurator {
 
 	@Override
 	protected void configureLogger(final String config) {
-		if (FilenameUtils.isExtension(config.toUpperCase(), CONFIG_TYP.PROPERTIES.name())) {
+		switch (CONFIG_TYP.valueOf(FilenameUtils.getExtension(config).toUpperCase())) {
+		case PROPERTIES:
 			System.out.println("Property Configuration :: " + config);
-			PropertyConfigurator.configureAndWatch(config, rescanDelay);
-		} else if (FilenameUtils.isExtension(config.toUpperCase(), CONFIG_TYP.XML.name())) {
+			PropertyConfigurator.configureAndWatch(config, this.rescanDelay);
+			break;
+		case XML:
 			System.out.println("XML Configuration :: " + config);
-			DOMConfigurator.configureAndWatch(config, rescanDelay);
-		} else {
+			DOMConfigurator.configureAndWatch(config, this.rescanDelay);
+			break;
+		default:
 			System.out.println("Falling back to basic Log4j Configuration");
 			BasicConfigurator.configure();
+			break;
 		}
+		System.out.println("Setup Monitoring interval to " + this.rescanDelay + "ms");
 	}
 
 	@Override
