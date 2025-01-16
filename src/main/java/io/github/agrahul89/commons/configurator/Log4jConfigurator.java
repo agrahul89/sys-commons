@@ -1,4 +1,4 @@
-package domain.brandname.syscode.commons.configurator;
+package io.github.agrahul89.commons.configurator;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.BasicConfigurator;

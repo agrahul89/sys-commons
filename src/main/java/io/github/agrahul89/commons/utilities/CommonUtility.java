@@ -1,4 +1,4 @@
-package domain.brandname.syscode.commons.utilities;
+package io.github.agrahul89.commons.utilities;
 
 import java.io.Closeable;
 import java.io.Flushable;

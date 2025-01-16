@@ -1,4 +1,4 @@
-package domain.brandname.syscode.commons.exception;
+package io.github.agrahul89.commons.exception;
 
 public class SysException extends Exception {
 

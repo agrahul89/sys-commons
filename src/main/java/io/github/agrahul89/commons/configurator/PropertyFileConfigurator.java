@@ -1,4 +1,4 @@
-package domain.brandname.syscode.commons.configurator;
+package io.github.agrahul89.commons.configurator;
 
 import java.io.File;
 
@@ -11,7 +11,7 @@ import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
-import domain.brandname.syscode.commons.utilities.PropertyReader;
+import io.github.agrahul89.commons.utilities.PropertyReader;
 
 public final class PropertyFileConfigurator implements Configurator {
 	private static final Logger LOGGER = Logger.getLogger(PropertyFileConfigurator.class);

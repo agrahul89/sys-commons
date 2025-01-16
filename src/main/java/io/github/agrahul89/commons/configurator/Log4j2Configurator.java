@@ -1,4 +1,4 @@
-package domain.brandname.syscode.commons.configurator;
+package io.github.agrahul89.commons.configurator;
 
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.Configurator;

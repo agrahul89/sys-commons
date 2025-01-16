@@ -1,4 +1,4 @@
-package domain.brandname.syscode.commons.utilities;
+package io.github.agrahul89.commons.utilities;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -10,7 +10,7 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
-import domain.brandname.syscode.commons.constant.Constants;
+import io.github.agrahul89.commons.constant.Constants;
 
 public class PropertyReader {
 	private static final Logger LOGGER = Logger.getLogger(PropertyReader.class);

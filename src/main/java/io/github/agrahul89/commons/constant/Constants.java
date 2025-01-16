@@ -1,4 +1,4 @@
-package domain.brandname.syscode.commons.constant;
+package io.github.agrahul89.commons.constant;
 
 import org.apache.commons.lang.StringUtils;
 

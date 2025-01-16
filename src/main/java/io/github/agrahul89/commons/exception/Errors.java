@@ -1,9 +1,9 @@
-package domain.brandname.syscode.commons.exception;
+package io.github.agrahul89.commons.exception;
 
 import org.apache.commons.lang.StringUtils;
 
-import domain.brandname.syscode.commons.utilities.CommonUtility;
-import domain.brandname.syscode.commons.utilities.PropertyReader;
+import io.github.agrahul89.commons.utilities.CommonUtility;
+import io.github.agrahul89.commons.utilities.PropertyReader;
 
 public enum Errors {
 

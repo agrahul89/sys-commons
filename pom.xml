@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>${group.id}</groupId>
-	<artifactId>${artifact.id}</artifactId>
+	<groupId>io.github.agrahul89.commons</groupId>
+	<artifactId>sys-commons</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
@@ -17,9 +17,6 @@
     </organization>
 
 	<properties>
-        <group.id>domain.brandname.syscode</group.id>
-        <artifact.id>sys-commons</artifact.id>
-        
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>21</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
